@@ -74,6 +74,7 @@ jobs:
   deploy:
       runs-on: ubuntu-latest
       needs: [ buildImageAndPush ]
+      environment: secrets
       steps:
         - name: AWS SSM Send-Command
           uses: peterkimzz/aws-ssm-send-command@master
