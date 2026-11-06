@@ -32,10 +32,14 @@ jobs:
           body: ${{ steps.create_tag.outputs.changelog }}
           draft: false
           prerelease: false
+
   buildImageAndPush:
     name: 도커 이미지 빌드와 푸시
     needs: makeTagAndRelease
     runs-on: ubuntu-latest
+    outputs:
+      owner_lc: ${{ steps.export_owner.outputs.owner_lc }}
+      image_name: ${{ steps.export_image.outputs.image_name }}
     steps:
       - uses: actions/checkout@v4
       - name: private_html 생성
